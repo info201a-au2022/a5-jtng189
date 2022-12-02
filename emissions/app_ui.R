@@ -56,7 +56,17 @@ plotpage <- tabPanel(
                   value = c(2000, 2020))
     ),
     mainPanel(
-      plotlyOutput("emission_graph")
+      plotlyOutput("emission_graph"),
+      p("This chart demonstrates the continuous patterns found in the
+        the exposure of CO2 emissions from various actions/fuel sources
+        in the past couple centuries. When looking at the accumulative
+        counts, there has been an exponential increase in the amount of
+        CO2 emissions, with coal, gas, and oil all sharing a similar
+        pattern. Land use changes differs from the patterns, in which
+        it trails with a relatively flatter pattern with a few spikes.
+        In ensuring that the next centuries's atmosphere is preserved, our
+        current generation needs to focus primarily on changing the various
+        fuel sources we consume for our productivity.")
     )
   )
 )
