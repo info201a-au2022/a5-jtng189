@@ -1,5 +1,6 @@
 library(tidyverse)
 library(shiny)
+library(scales)
 
 df <- read.csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv")
 
@@ -52,9 +53,19 @@ oil_co2_us_ave <- df_2 %>%
 # server
 
 server <- function(input, output) {
+    
     # Create plotly bar graph
     output$emission_graph <- renderPlotly({
-      
-    
+      ggplotly(
+        ggplot(df_3, aes(x = year, y = .data[[input$emission]])) +
+          geom_bar(position = "dodge", stat = "identity", color = "#000000",
+                   fill = "#ffa200") +
+          xlab("Year") +
+          ylab("Amount of CO2 Emissions (in million tonnes)") +
+          labs(title = "CO2 Emissions Worldwide (1882-2021)") +
+          scale_x_continuous(limits = c(input$year[1] - 1, input$year[2] + 1)) +
+          scale_y_continuous(labels = scales::comma) +
+          theme(legend.position = "none")
+      )
     })
 }
